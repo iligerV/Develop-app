@@ -25,14 +25,23 @@ class Article extends React.Component {
     };
 
     handleBtnMakeVisibleModalToDelete = () => {
-        const {btnVisibleModalToDelete} = this.state;
+        const { btnVisibleModalToDelete } = this.state;
 
-        this.setState({btnVisibleModalToDelete: !btnVisibleModalToDelete});
+        this.setState({ btnVisibleModalToDelete: !btnVisibleModalToDelete });
     };
 
     render() {
-        const {author, bigText} = this.props.data;
-        const {visible, btnVisibleInput, articleStory, btnVisibleModalToDelete} = this.state;
+        const {
+            author,
+            bigText
+        } = this.props.data;
+        const {
+            visible,
+            btnVisibleInput,
+            articleStory,
+            btnVisibleModalToDelete
+        } = this.state;
+
         return (
             <React.Fragment>
                 {

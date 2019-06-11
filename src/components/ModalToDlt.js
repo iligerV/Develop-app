@@ -11,11 +11,12 @@ class ModalToDlt extends React.Component {
         this.props.handleBtnMakeVisibleModalToDelete();
     };
     render() {
+        const { articleStory } = this.props;
+
         return (
             <React.Fragment>
-            {this.props.handleBtnMakeVisibleModalToDelete
-                ? <div className='modal_to_dlt'>
-                    <h5>Вы уверены, что хотите удалить новость: <br/> {this.props.articleStory} ?</h5>
+            <div className='modal_to_dlt'>
+                    <h5>Вы уверены, что хотите удалить новость: <br/> {articleStory} ?</h5>
                     <div>
                         <button
                             onClick={this.deleteNews}
@@ -25,14 +26,10 @@ class ModalToDlt extends React.Component {
                         >НЕТ</button>
                     </div>
                  </div>
-                : null}
-                {this.props.handleBtnMakeVisibleModalToDelete
-                    ? <div
-                        className='bg'
-                        onClick={this.declineDeleteNews}
-                    >'</div>
-                    : null
-                }
+                 <div
+                     className='bg'
+                     onClick={this.declineDeleteNews}
+                 > </div>
             </React.Fragment>
         )
     }
