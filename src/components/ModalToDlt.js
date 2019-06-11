@@ -15,7 +15,7 @@ class ModalToDlt extends React.Component {
             <React.Fragment>
             {this.props.handleBtnMakeVisibleModalToDelete
                 ? <div className='modal_to_dlt'>
-                    <h3>Вы уверены, что хотите удалить новость?</h3>
+                    <h5>Вы уверены, что хотите удалить новость: <br/> {this.props.articleStory} ?</h5>
                     <div>
                         <button
                             onClick={this.deleteNews}

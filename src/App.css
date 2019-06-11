@@ -66,9 +66,9 @@ p {
 }
 .modal_to_dlt {
   z-index: 5;
-  position: fixed;
+  position: absolute;
   width: 400px;
-  height: 105px;
+  height: 115px;
   margin: -25px 500px;
   background-color: grey;
   border: 1px solid firebrick;

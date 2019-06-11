@@ -40,6 +40,7 @@ class Article extends React.Component {
                     ? <
                         ModalToDlt
                             handleBtnMakeVisibleModalToDelete = {this.handleBtnMakeVisibleModalToDelete}
+                            articleStory = {articleStory}
                         />
                     : null
                 }
@@ -47,7 +48,8 @@ class Article extends React.Component {
                     <div className='article_top_div'>
                         <p className="news__author">{author}:</p>
                         {!btnVisibleInput
-                            ? <p className="news__text">{articleStory}</p>
+                            ? <p className="news__text"
+                            >{articleStory}</p>
                             : <input
                                 onChange={this.handleArticleStorySaveChanges}
                                 type="text"
