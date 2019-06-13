@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 class Add extends React.Component {
+
     state = {
         name: "",
         text: "",
         bigText: "",
         agree: false
     };
+
     onBtnClickHandler = e => {
         e.preventDefault();
         const { name, text, bigText } = this.state;
@@ -18,13 +20,16 @@ class Add extends React.Component {
             bigText
         });
     };
+
     handleChange = e => {
         const { id, value } = e.currentTarget;
         this.setState({ [id]: value });
     };
+
     handleCheckboxChange = e => {
         this.setState({ agree: e.currentTarget.checked });
     };
+
     validate = () => {
         const { name, text, agree } = this.state;
         if (name.trim() && text.trim() && agree) {
@@ -32,9 +37,13 @@ class Add extends React.Component {
         }
             return false;
     };
+
     render() {
+
         const { name, text, bigText } = this.state;
+
         return (
+
             <form className="add">
                 <input
                     id="name"
@@ -73,7 +82,9 @@ class Add extends React.Component {
         );
     }
 }
+
 Add.propTypes = {
     onAddNews: PropTypes.func.isRequired
 };
+
 export { Add }

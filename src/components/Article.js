@@ -1,7 +1,8 @@
 import React from 'react' // мы обязаны импортировать необходимые пакеты в каждом файле
 import PropTypes from 'prop-types' // у Article это react и prop-types
 import ModalToDlt from './ModalToDlt'
-// далее просто скопировано все что было, кроме последней строки
+
+
 class Article extends React.Component {
     state = {
         visible: false,
@@ -31,21 +32,27 @@ class Article extends React.Component {
     };
 
     render() {
+
         const {
             author,
             bigText,
         } = this.props.data;
+
         const {
             visible,
             btnVisibleInput,
             articleStory,
             btnVisibleModalToDelete
         } = this.state;
+
         const {
             className,
         } = this.props;
+
         const classForArticle = `article ${className}`;
+
         return (
+
             <React.Fragment>
                 {
                     btnVisibleModalToDelete

@@ -11,22 +11,27 @@ class News extends React.Component {
         data.length
             ?
             newsTemplate = data.map(function(item) {
+                let test;
                 if (item.text.match(/желтый/)) {
-                    return <Article className='yellow' key={item.id} data={item} />;
+                    test = <Article className='yellow' key={item.id} data={item} />;
                 } else if (item.text.match(/голубой/)) {
-                    return <Article className='blue' key={item.id} data={item} />;
+                    test = <Article className='blue' key={item.id} data={item} />;
                 } else {
-                    return <Article className='' key={item.id} data={item}/>;
+                    test =  <Article className='' key={item.id} data={item}/>;
                 }
+                return test;
             })
             :
             newsTemplate = <p>К сожалению новостей нет</p>;
 
         return newsTemplate;
     };
+
     render() {
         const { data } = this.props;
+
         return (
+
             <div className="news">
                 {this.renderNews()}
                 {data.length ? (
@@ -38,7 +43,9 @@ class News extends React.Component {
         );
     }
 }
+
 News.propTypes = {
     data: PropTypes.array.isRequired
 };
+
 export { News }
