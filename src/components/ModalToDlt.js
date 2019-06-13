@@ -7,28 +7,32 @@ class ModalToDlt extends React.Component {
         console.log('Новость удалена');
         this.props.handleBtnMakeVisibleModalToDelete();
     };
+
     declineDeleteNews = () => {
         this.props.handleBtnMakeVisibleModalToDelete();
     };
+
     render() {
+
         const { articleStory } = this.props;
 
         return (
+
             <React.Fragment>
             <div className='modal_to_dlt'>
-                    <h5>Вы уверены, что хотите удалить новость: <br/> {articleStory} ?</h5>
+                    <h5>Вы уверены, что хотите удалить новость: <br/> { articleStory } ?</h5>
                     <div>
                         <button
-                            onClick={this.deleteNews}
+                            onClick={ this.deleteNews }
                         >ДА</button>
                         <button
-                            onClick={this.declineDeleteNews}
+                            onClick={ this.declineDeleteNews }
                         >НЕТ</button>
                     </div>
                  </div>
                  <div
                      className='bg'
-                     onClick={this.declineDeleteNews}
+                     onClick={ this.declineDeleteNews }
                  > </div>
             </React.Fragment>
         )

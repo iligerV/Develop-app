@@ -91,3 +91,10 @@ p {
   background: rgba(0, 0, 0, 0.3);
 }
 
+.yellow {
+  background: yellow;
+}
+.blue {
+  background: blue;
+}
+

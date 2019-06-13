@@ -11,28 +11,41 @@ class News extends React.Component {
         data.length
             ?
             newsTemplate = data.map(function(item) {
-                return <Article key={item.id} data={item} />;
+                let test;
+                if (item.text.match(/желтый/)) {
+                    test = <Article className='yellow' key={ item.id } data={ item } />;
+                } else if (item.text.match(/голубой/)) {
+                    test = <Article className='blue' key={ item.id } data={ item } />;
+                } else {
+                    test =  <Article className='' key={ item.id } data={ item }/>;
+                }
+                return test;
             })
             :
             newsTemplate = <p>К сожалению новостей нет</p>;
 
         return newsTemplate;
     };
+
     render() {
         const { data } = this.props;
+
         return (
+
             <div className="news">
-                {this.renderNews()}
-                {data.length ? (
+                { this.renderNews() }
+                { data.length ? (
                     <strong className={"news__count"}>
-                        Всего новостей: {data.length}
+                        Всего новостей: { data.length }
                     </strong>
-                ) : null}
+                ) : null }
             </div>
         );
     }
 }
+
 News.propTypes = {
     data: PropTypes.array.isRequired
 };
+
 export { News }

@@ -1,7 +1,8 @@
 import React from 'react' // мы обязаны импортировать необходимые пакеты в каждом файле
 import PropTypes from 'prop-types' // у Article это react и prop-types
 import ModalToDlt from './ModalToDlt'
-// далее просто скопировано все что было, кроме последней строки
+
+
 class Article extends React.Component {
     state = {
         visible: false,
@@ -11,17 +12,17 @@ class Article extends React.Component {
     };
 
     handleReadMoreClick = () => {
-        this.setState({visible: true})
+        this.setState({ visible: true })
     };
 
     handleArticleStorySaveChanges = e => {
-        this.setState({articleStory: e.currentTarget.value})
+        this.setState({ articleStory: e.currentTarget.value })
     };
 
     handleBtnMakeVisibleInput = () => {
-        const {btnVisibleInput} = this.state;
+        const { btnVisibleInput } = this.state;
 
-        this.setState({btnVisibleInput: !btnVisibleInput});
+        this.setState({ btnVisibleInput: !btnVisibleInput });
     };
 
     handleBtnMakeVisibleModalToDelete = () => {
@@ -31,10 +32,12 @@ class Article extends React.Component {
     };
 
     render() {
+
         const {
             author,
-            bigText
+            bigText,
         } = this.props.data;
+
         const {
             visible,
             btnVisibleInput,
@@ -42,54 +45,61 @@ class Article extends React.Component {
             btnVisibleModalToDelete
         } = this.state;
 
+        const {
+            className,
+        } = this.props;
+
+        const classForArticle = `article ${ className }`;
+
         return (
+
             <React.Fragment>
                 {
                     btnVisibleModalToDelete
                     ? <
                         ModalToDlt
-                            handleBtnMakeVisibleModalToDelete = {this.handleBtnMakeVisibleModalToDelete}
-                            articleStory = {articleStory}
+                            handleBtnMakeVisibleModalToDelete = { this.handleBtnMakeVisibleModalToDelete }
+                            articleStory = { articleStory }
                         />
                     : null
                 }
-                <div className="article">
+                <div className={ classForArticle }>
                     <div className='article_top_div'>
-                        <p className="news__author">{author}:</p>
-                        {!btnVisibleInput
+                        <p className="news__author">{ author }:</p>
+                        { !btnVisibleInput
                             ? <p className="news__text"
-                            >{articleStory}</p>
+                            >{ articleStory }</p>
                             : <input
-                                onChange={this.handleArticleStorySaveChanges}
+                                onChange={ this.handleArticleStorySaveChanges }
                                 type="text"
-                                value={articleStory}
+                                value={ articleStory }
                             />
                         }
-                        {!visible
+                        { !visible
                             ? <a
-                                onClick={this.handleReadMoreClick}
+                                onClick={ this.handleReadMoreClick }
                                 href="#readmore"
                                 className="news__readmore"
                             >
                                 Подробнее
                             </a>
-                            : <p className="news__big-text">{bigText}</p>
+                            : <p className="news__big-text">{ bigText }</p>
                         }
                     </div>
                     <div className="article_btm_div">
                         <button
                             className='delete_news'
-                            onClick={this.handleBtnMakeVisibleModalToDelete}
+                            onClick={ this.handleBtnMakeVisibleModalToDelete }
                         >Удалить</button>
 
-                        {!btnVisibleInput
+                        { !btnVisibleInput
                             ? < button
-                                onClick={this.handleBtnMakeVisibleInput}
+                                onClick={ this.handleBtnMakeVisibleInput }
                             >
                                 Изменить
                             </button>
                             : <button
-                                onClick={this.handleBtnMakeVisibleInput}
+                                onClick={ this.handleBtnMakeVisibleInput }
                             >
                                 Сохранить
                             </button>

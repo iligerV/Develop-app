@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 class Add extends React.Component {
+
     state = {
         name: "",
         text: "",
         bigText: "",
         agree: false
     };
+
     onBtnClickHandler = e => {
         e.preventDefault();
         const { name, text, bigText } = this.state;
@@ -18,13 +20,16 @@ class Add extends React.Component {
             bigText
         });
     };
+
     handleChange = e => {
         const { id, value } = e.currentTarget;
         this.setState({ [id]: value });
     };
+
     handleCheckboxChange = e => {
         this.setState({ agree: e.currentTarget.checked });
     };
+
     validate = () => {
         const { name, text, agree } = this.state;
         if (name.trim() && text.trim() && agree) {
@@ -32,40 +37,44 @@ class Add extends React.Component {
         }
             return false;
     };
+
     render() {
+
         const { name, text, bigText } = this.state;
+
         return (
+
             <form className="add">
                 <input
                     id="name"
                     type="text"
-                    onChange={this.handleChange}
+                    onChange={ this.handleChange }
                     className="add__author"
                     placeholder="Ваше имя"
-                    value={name}
+                    value={ name }
                 />
                 <textarea
                     id="text"
-                    onChange={this.handleChange}
+                    onChange={ this.handleChange }
                     className="add__text"
                     placeholder="Текст новости"
-                    value={text}
+                    value={ text }
                 />
                 <textarea
                     id="bigText"
-                    onChange={this.handleChange}
+                    onChange={ this.handleChange }
                     className="add__text"
                     placeholder="Текст новости подробно"
-                    value={bigText}
+                    value={ bigText }
                 />
                 <label className="add__checkrule">
-                    <input type="checkbox" onChange={this.handleCheckboxChange} /> Я
+                    <input type="checkbox" onChange={ this.handleCheckboxChange } /> Я
                     согласен с правилами
                 </label>
                 <button
                     className="add__btn"
-                    onClick={this.onBtnClickHandler}
-                    disabled={!this.validate()}
+                    onClick={ this.onBtnClickHandler }
+                    disabled={ !this.validate() }
                 >
                     Добавить новость
                 </button>
@@ -73,7 +82,9 @@ class Add extends React.Component {
         );
     }
 }
+
 Add.propTypes = {
     onAddNews: PropTypes.func.isRequired
 };
+
 export { Add }
