@@ -11,7 +11,13 @@ class News extends React.Component {
         data.length
             ?
             newsTemplate = data.map(function(item) {
-                return <Article key={item.id} data={item} />;
+                if (item.text.match(/желтый/)) {
+                    return <Article className='yellow' key={item.id} data={item} />;
+                } else if (item.text.match(/голубой/)) {
+                    return <Article className='blue' key={item.id} data={item} />;
+                } else {
+                    return <Article className='' key={item.id} data={item}/>;
+                }
             })
             :
             newsTemplate = <p>К сожалению новостей нет</p>;
