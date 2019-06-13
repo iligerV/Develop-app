@@ -33,7 +33,7 @@ class Article extends React.Component {
     render() {
         const {
             author,
-            bigText
+            bigText,
         } = this.props.data;
         const {
             visible,
@@ -41,7 +41,10 @@ class Article extends React.Component {
             articleStory,
             btnVisibleModalToDelete
         } = this.state;
-
+        const {
+            className,
+        } = this.props;
+        const classForArticle = `article ${className}`;
         return (
             <React.Fragment>
                 {
@@ -53,7 +56,7 @@ class Article extends React.Component {
                         />
                     : null
                 }
-                <div className="article">
+                <div className={classForArticle}>
                     <div className='article_top_div'>
                         <p className="news__author">{author}:</p>
                         {!btnVisibleInput
