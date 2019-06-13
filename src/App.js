@@ -51,10 +51,10 @@ class App extends React.Component {
 
         return (
             <React.Fragment>
-                <Add onAddNews={this.handleAddNews} />
+                <Add onAddNews={ this.handleAddNews } />
                 <h3>Новости</h3>
                 {isLoading && <p>Загружаю...</p>}
-                {Array.isArray(news) && <News data={news} />}
+                {Array.isArray(news) && <News data={ news } />}
             </React.Fragment>
         )
     }

@@ -48,33 +48,33 @@ class Add extends React.Component {
                 <input
                     id="name"
                     type="text"
-                    onChange={this.handleChange}
+                    onChange={ this.handleChange }
                     className="add__author"
                     placeholder="Ваше имя"
-                    value={name}
+                    value={ name }
                 />
                 <textarea
                     id="text"
-                    onChange={this.handleChange}
+                    onChange={ this.handleChange }
                     className="add__text"
                     placeholder="Текст новости"
-                    value={text}
+                    value={ text }
                 />
                 <textarea
                     id="bigText"
-                    onChange={this.handleChange}
+                    onChange={ this.handleChange }
                     className="add__text"
                     placeholder="Текст новости подробно"
-                    value={bigText}
+                    value={ bigText }
                 />
                 <label className="add__checkrule">
-                    <input type="checkbox" onChange={this.handleCheckboxChange} /> Я
+                    <input type="checkbox" onChange={ this.handleCheckboxChange } /> Я
                     согласен с правилами
                 </label>
                 <button
                     className="add__btn"
-                    onClick={this.onBtnClickHandler}
-                    disabled={!this.validate()}
+                    onClick={ this.onBtnClickHandler }
+                    disabled={ !this.validate() }
                 >
                     Добавить новость
                 </button>

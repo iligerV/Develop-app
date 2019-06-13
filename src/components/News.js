@@ -13,11 +13,11 @@ class News extends React.Component {
             newsTemplate = data.map(function(item) {
                 let test;
                 if (item.text.match(/желтый/)) {
-                    test = <Article className='yellow' key={item.id} data={item} />;
+                    test = <Article className='yellow' key={ item.id } data={ item } />;
                 } else if (item.text.match(/голубой/)) {
-                    test = <Article className='blue' key={item.id} data={item} />;
+                    test = <Article className='blue' key={ item.id } data={ item } />;
                 } else {
-                    test =  <Article className='' key={item.id} data={item}/>;
+                    test =  <Article className='' key={ item.id } data={ item }/>;
                 }
                 return test;
             })
@@ -33,12 +33,12 @@ class News extends React.Component {
         return (
 
             <div className="news">
-                {this.renderNews()}
-                {data.length ? (
+                { this.renderNews() }
+                { data.length ? (
                     <strong className={"news__count"}>
-                        Всего новостей: {data.length}
+                        Всего новостей: { data.length }
                     </strong>
-                ) : null}
+                ) : null }
             </div>
         );
     }
