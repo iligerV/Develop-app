@@ -29,7 +29,7 @@ class News extends React.Component {
 
     return (
       <React.Fragment>
-        {isLoading ? (
+        {!isLoading ? (
           <p>Загрузка...</p>
         ) : (
           <div className="news">
