@@ -3,6 +3,26 @@ import PropTypes from 'prop-types'
 import { Article } from './Article' // идти в components не нужно, так как мы уже в этой директории
 
 class News extends React.Component {
+  renderMainNewsTemplate = () => {
+    this.props.getDatas()
+    const { data, isLoading } = this.props
+
+    if (!isLoading) {
+      return <p>Загрузка...</p>
+    } else {
+      return (
+        <div className="news">
+          {this.renderNews()}
+          {data.length ? (
+            <strong className={'news__count'}>
+              Всего новостей: {data.length}
+            </strong>
+          ) : null}
+        </div>
+      )
+    }
+  }
+
   renderNews = () => {
     const { data } = this.props
     let newsTemplate = null
@@ -25,24 +45,7 @@ class News extends React.Component {
   }
 
   render() {
-    const { data, isLoading } = this.props
-
-    return (
-      <React.Fragment>
-        {!isLoading ? (
-          <p>Загрузка...</p>
-        ) : (
-          <div className="news">
-            {this.renderNews()}
-            {data.length ? (
-              <strong className={'news__count'}>
-                Всего новостей: {data.length}
-              </strong>
-            ) : null}
-          </div>
-        )}
-      </React.Fragment>
-    )
+    return <React.Fragment>{this.renderMainNewsTemplate()}</React.Fragment>
   }
 }
 

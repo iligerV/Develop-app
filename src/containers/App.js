@@ -6,28 +6,28 @@ import { getDatas } from '../actions/NewsActions'
 import './App.css' // подключение файла стилей
 
 class App extends React.Component {
-  // static getDerivedStateFromProps(props, state) {
-  //     let nextFilteredNews;
-  //     // смотрим в state.news (ранее смотрели в props)
-  //     // и проверяем, чтобы не клоинировать null
-  //     // например, в момент первой отрисовки
-  //     if (Array.isArray(state.news)) {
-  //         nextFilteredNews = [...state.news];
-  //         nextFilteredNews.forEach((item) => {
-  //             if (item.bigText.toLowerCase().indexOf('pubg') !== -1) {
-  //                 item.bigText = 'СПАМ'
-  //             }
-  //         });
-  //         return {
-  //             filteredNews: nextFilteredNews,
-  //         }
-  //     }
-  //     return null
-  // }
+  static getDerivedStateFromProps(props) {
+    let nextFilteredNews
+    // смотрим в state.news (ранее смотрели в props)
+    // и проверяем, чтобы не клоинировать null
+    // например, в момент первой отрисовки
+    if (Array.isArray(props.news)) {
+      nextFilteredNews = [...props.news]
+      nextFilteredNews.forEach(item => {
+        if (item.bigText.toLowerCase().indexOf('pubg') !== -1) {
+          item.bigText = 'СПАМ'
+        }
+      })
+      return {
+        filteredNews: nextFilteredNews,
+      }
+    }
+    return null
+  }
 
   handleAddNews = data => {
-    const nextNews = [data, ...this.state.news]
-    this.setState({ news: nextNews })
+    // const nextNews = [data, ...this.props.news]
+    // this.setState({ news: nextNews })
   }
 
   render() {
