@@ -5,6 +5,7 @@ import { Article } from './Article' // идти в components не нужно, �
 class News extends React.Component {
 
     renderNews = () => {
+
         const { data } = this.props;
         let newsTemplate = null;
 
