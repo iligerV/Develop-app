@@ -2,7 +2,7 @@ import React from 'react' // подключение библиотеки React
 import { connect } from 'react-redux'
 import { Add } from '../components/Add' // ./ = текущая директория,
 import { News } from '../components/News' // далее мы идем в директорию components и в нужный компонент
-import { getDatas } from '../actions/NewsActions'
+import { getDatasSuccess, getDatasError } from '../actions/NewsActions'
 import './App.css' // подключение файла стилей
 
 class App extends React.Component {
@@ -25,22 +25,18 @@ class App extends React.Component {
     return null
   }
 
-  handleAddNews = data => {
-    // const nextNews = [data, ...this.props.news]
-    // this.setState({ news: nextNews })
-  }
-
   render() {
-    const { news, getDatasAction } = this.props
+    const { news, getDatasSuccess, getDatasError } = this.props
 
     return (
       <React.Fragment>
         <Add onAddNews={this.handleAddNews} />
         <h3>Новости</h3>
         <News
+          news={news}
           isLoading={news.isLoading}
-          data={news.news}
-          getDatas={getDatasAction}
+          getDatasSuccess={getDatasSuccess}
+          getDatasError={getDatasError}
         />
       </React.Fragment>
     )
@@ -49,14 +45,13 @@ class App extends React.Component {
 
 const mapStateToProps = store => {
   return {
-    news: store.news,
+    news: store.news.news,
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getDatasAction: () => dispatch(getDatas()),
-  }
+const mapDispatchToProps = {
+  getDatasSuccess,
+  getDatasError,
 }
 
 export default connect(

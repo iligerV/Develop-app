@@ -1,47 +1,52 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Article } from './Article' // идти в components не нужно, так как мы уже в этой директории
+import { Article } from './Article'
 
 class News extends React.Component {
-  renderMainNewsTemplate = () => {
-    this.props.getDatas()
-    const { data, isLoading } = this.props
+  async componentDidMount() {
+    const { getDatasSuccess, getDatasError } = this.props
 
-    if (!isLoading) {
-      return <p>Загрузка...</p>
-    } else {
-      return (
-        <div className="news">
-          {this.renderNews()}
-          {data.length ? (
-            <strong className={'news__count'}>
-              Всего новостей: {data.length}
-            </strong>
-          ) : null}
-        </div>
-      )
-    }
+    await fetch('/data/newsData.json')
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        return getDatasSuccess(data)
+      })
+      .catch(data => {
+        getDatasError()
+      })
+  }
+
+  renderMainNewsTemplate = () => {
+    const { news } = this.props
+
+    return (
+      <div className="news">
+        {this.renderNews()}
+        {news.length ? (
+          <strong className={'news__count'}>
+            Всего новостей: {news.length}
+          </strong>
+        ) : null}
+      </div>
+    )
   }
 
   renderNews = () => {
-    const { data } = this.props
-    let newsTemplate = null
+    const { news } = this.props
 
-    data.length
-      ? (newsTemplate = data.map(function(item) {
-          let test
-          if (item.text.match(/желтый/)) {
-            test = <Article className="yellow" key={item.id} data={item} />
-          } else if (item.text.match(/голубой/)) {
-            test = <Article className="blue" key={item.id} data={item} />
-          } else {
-            test = <Article className="" key={item.id} data={item} />
-          }
-          return test
-        }))
-      : (newsTemplate = <p>К сожалению новостей нет</p>)
-
-    return newsTemplate
+    if (news.length) {
+      return news.map(item => {
+        if (item.text.match(/желтый/)) {
+          return <Article className="yellow" key={item.id} data={item} />
+        } else if (item.text.match(/голубой/)) {
+          return <Article className="blue" key={item.id} data={item} />
+        } else {
+          return <Article className="" key={item.id} data={item} />
+        }
+      })
+    }
   }
 
   render() {
@@ -50,7 +55,7 @@ class News extends React.Component {
 }
 
 News.propTypes = {
-  data: PropTypes.array.isRequired,
+  news: PropTypes.array.isRequired,
 }
 
 export { News }
